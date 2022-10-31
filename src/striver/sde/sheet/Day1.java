@@ -1,19 +1,35 @@
 package striver.sde.sheet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Day1 {
     public static void main(String[] args) {
         /* Q1 Given a matrix if an element in the matrix is 0
         then you will have to set its entire column and row to 0 and then return the matrix
         * */
-        int arr[][] = {{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}};
-        int res[][] = setMatrixZero(arr);
-        for (int[] row:res) {
-            for (int e:row ) {
-                System.out.print(e +" ");
-            }
-            System.out.println();
-        }
-        System.out.println();
+
+//        int arr[][] = {{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}};
+//        int res[][] = setMatrixZero(arr);
+//        for (int[] row:res) {
+//            for (int e:row ) { System.out.print(e +" ");}
+//            System.out.println();
+//        }
+
+
+
+/*
+       Q2  Problem Statement: Given an integer N, return the first N rows of Pascal’s triangle.
+*/
+
+        pascalsTriangle(6);
+
+
+
+
+
+
+
     }
 
     public static int[][] setMatrixZero(int[][] arr){
@@ -39,5 +55,30 @@ public class Day1 {
             }
         }
         return arr;
+    }
+
+    public static void pascalsTriangle(int n){
+        int[][] mat = new int[n][];
+        for (int row = 0; row < n ; row++) {
+            mat[row] = new int[row];
+            for (int col = 0; col < row ; col++) {
+                if(col == 0 || col ==row-1){
+                    mat[row][col]=1;
+                }
+                else {
+                    mat[row][col]=mat[row-1][col-1]+mat[row-1][col];
+                }
+
+            }
+        }
+        for (int[] row:mat) {
+            for (int i = n-row.length; i >0; i--) {
+                System.out.print(" ");
+            }
+            for (int e:row ) { System.out.print(e +" ");}
+            System.out.println();
+        }
+
+
     }
 }
