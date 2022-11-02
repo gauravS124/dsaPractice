@@ -1,13 +1,14 @@
 package striver.sde.sheet;
 
+import javax.print.DocFlavor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Day1 {
     public static void main(String[] args) {
-        /* Q1 Given a matrix if an element in the matrix is 0
-        then you will have to set its entire column and row to 0 and then return the matrix
-        * */
+
+        //////////////////// 1 /////////////////////
 
 //        int arr[][] = {{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}};
 //        int res[][] = setMatrixZero(arr);
@@ -15,17 +16,26 @@ public class Day1 {
 //            for (int e:row ) { System.out.print(e +" ");}
 //            System.out.println();
 //        }
+        //////////////////// 2 /////////////////////
 
 
 
-/*
-       Q2  Problem Statement: Given an integer N, return the first N rows of Pascal’s triangle.
-*/
 
-        pascalsTriangle(6);
+//        pascalsTriangle(6);
 
 
+        //////////////////// 3 /////////////////////
 
+
+//        int [] arr =nextPerm(new int[]{1, 3, 2});
+//        for (int a:arr) {
+//            System.out.print(a+ " ");
+//        }
+        //////////////////// 4 /////////////////////
+
+
+        int arr[]={-2,1,-3,4,-1,2,1,-5,4};
+        maxSumSubarray(arr);
 
 
 
@@ -80,5 +90,61 @@ public class Day1 {
         }
 
 
+    }
+
+    public static int[] nextPerm(int[] arr){
+/*
+[1,3,5,4,2]
+*/
+        int firsstDec;
+
+        for (int i = arr.length-1; i >= 0 ; i--) {
+            if(i==0)
+            {  Arrays.sort(arr);
+                return arr;
+            }
+
+            if(arr[i-1]<arr[i]){
+                firsstDec =arr[i-1];
+                Arrays.sort(arr,i,arr.length);
+
+                for (int a:arr) {
+                    System.out.print(a+ " ");
+                }
+                System.out.println();
+
+                for (int j = i; j < arr.length ; j++) {
+                    if(arr[j]> firsstDec){
+                        int temp = arr[j];
+                        arr[j] = firsstDec;
+                        arr[i-1]=temp;
+                        break;
+                    }
+                }
+
+                return arr;
+            }
+        }
+
+        return arr;
+    }
+
+    public static void maxSumSubarray(int[] arr){
+        int meh=0,start=0,end =0;
+        int msf = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length ; i++) {
+            meh += arr[i];
+
+            if(meh>msf){
+                end = i;
+                msf=meh;
+            }
+            if(meh<0){
+                meh=0;
+                start=i+1;
+                end=i;
+            }
+        }
+        System.out.println(msf+"=> start "+start+" end "+end);
     }
 }
