@@ -34,11 +34,17 @@ public class Day1 {
         //////////////////// 4 /////////////////////
 
 
-        int arr[]={-2,1,-3,4,-1,2,1,-5,4};
-        maxSumSubarray(arr);
+//        int arr[]={-2,1,-3,4,-1,2,1,-5,4};
+//        maxSumSubarray(arr);
 
+//        int arr[] ={2,0,1,2,1,0,0};
+//        sortColors(arr);
+//        for (int a:arr) {
+//            System.out.print(a+ " ");
+//        }
 
-
+        int arr[] ={7,6,4,3,1};
+        stockBuySell(arr);
 
     }
 
@@ -146,5 +152,48 @@ public class Day1 {
             }
         }
         System.out.println(msf+"=> start "+start+" end "+end);
+    }
+
+    public static void sortColors(int[] arr){
+        int low =0;
+        int mid =0;
+        int high = arr.length-1;
+
+
+        while(mid<=high){
+            for (int a:arr) {
+                System.out.print(a+ " ");
+            }
+            System.out.println( "||||"+low+" low "+ high+" "+mid  );
+            if(arr[mid]==0){
+                int temp = arr[low];
+                arr[low]=arr[mid];
+                arr[mid]=temp;
+                low++;
+                mid++;
+            }
+            else if(arr[mid]==1){
+                mid++;
+            }
+            else if(arr[mid]==2){
+                int temp = arr[high];
+                arr[high]=arr[mid];
+                arr[mid]=temp;
+                high--;
+            }
+        }
+    }
+    public static void stockBuySell(int[] prices){
+        int minTillNow =Integer.MAX_VALUE;
+        int maxProfit=0;
+
+        for (int price:prices) {
+            minTillNow=Math.min(minTillNow,price);
+            maxProfit = Math.max(price-minTillNow,maxProfit);
+        }
+        System.out.println(maxProfit);
+        System.out.println(minTillNow);
+
+
     }
 }
